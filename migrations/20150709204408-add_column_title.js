@@ -7,7 +7,7 @@ module.exports = {
       "title",
       Sequelize.STRING
       );
-  }
+  },
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -15,10 +15,12 @@ module.exports = {
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
-  },
 
   down: function (queryInterface, Sequelize) {
-    queryInterface.removeColumn("PixelPainter", "title");
+    queryInterface.removeColumn(
+      "Drawings",
+      "title"
+      );
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
