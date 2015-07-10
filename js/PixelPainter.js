@@ -8,62 +8,71 @@ var color = 'white';
 
 $(document).ready(function(){
 
-	$body = $('body');
-	$leftSidebar = $('<div/>', {
-		'id': "leftSidebar"
-	});
-	$body.prepend($leftSidebar);
+$body = $('body');
+$leftSidebar = $('<div/>', {
+'id': "leftSidebar"
+});
+$body.prepend($leftSidebar);
 
-	for (var x = 0; x < colorArray.length; x++){
-		rGB = "#" + colorArray[x];
-		$colorSquare = $('<div/>', {
-			'class': "colorSquare",
-			'id': rGB,
-			css: {
-				backgroundColor: rGB
-			}
-		}).prependTo($leftSidebar);
+for (var x = 0; x < colorArray.length; x++){
+rGB = "#" + colorArray[x];
+$colorSquare = $('<div/>', {
+'class': "colorSquare",
+'id': rGB,
+css: {
+backgroundColor: rGB
+}
+}).prependTo($leftSidebar);
+}
+
+$erase = $('<button/>', {
+'class': 'erase',
+text: 'Erase'
+});
+$clear = $('<button/>', {
+'class': 'clear',
+text: 'Clear'
+});
+$save = $('<button/>', {
+'class': 'save',
+text: 'Save'
+});
+
+$leftSidebar.append($erase, $clear, $save);
+
+
+for (var i = 0; i < gridSize; i++){
+	$('<div/>', {
+		'id': "row" + i
+	}).appendTo('#pixelPainter');
+
+	for (var k = 0; k < gridSize; k++){
+		$('<div/>',{
+			'id': "column" + k,
+			'class': "square"
+		}).appendTo('#row' + i);
 	}
+}
 
-	$erase = $('<button/>', {
-		'class': 'erase',
-		text: 'Erase'
-	});
-	$clear = $('<button/>', {
-		'class': 'clear',
-		text: 'Clear'
-	});
-
-	$leftSidebar.append($erase, $clear);
+$('.colorSquare').click(function(){
+	color = this.id;
+})
 
 
-	for (var i = 0; i < gridSize; i++){
-		$('<div/>', {
-			'id': "row"
-		}).appendTo('#pixelPainter');
+$('.square').click(function(){
+	$(this).css("backgroundColor", color);
+})
 
-		for (var k = 0; k < gridSize; k++){
-			$('<div/>',{
-				'class': "square"
-			}).appendTo('#row');
-		}
-	}
+$('.erase').click(function(){
+	color = "white";
+})
 
-	$('.colorSquare').click(function(){
-		color = this.id;
-	})
+$('.clear').click(function(){
+	$('.square').css("backgroundColor", 'white');
+})
 
+$('.save').click(function(){
 
-	$('.square').click(function(){
-		$(this).css("backgroundColor", color);
-	})
-
-	$('.erase').click(function(){
-		color = "white";
-	})
-
-	$('.clear').click(function(){
-		$('.square').css("backgroundColor", 'white');
-	})
+})
 
 });
